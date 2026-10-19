@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PawPot Support</title>
+<meta name="description" content="Help and contact for PawPot, homemade recipes for cats and dogs.">
+<style>
+:root { --paper:#FFF6EA; --card:#FFFFFF; --ink:#2B2340; --soft:#6B6380; --sun:#FFCB45; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.55 ui-rounded,"SF Pro Rounded",-apple-system,system-ui,sans-serif; }
+nav { position:sticky; top:0; z-index:1; display:flex; gap:8px; justify-content:center;
+  padding:12px 16px; background:var(--paper); border-bottom:2px solid var(--ink); }
+nav a { color:var(--ink); text-decoration:none; font-weight:700; font-size:15px; padding:6px 14px;
+  border:2px solid var(--ink); border-radius:999px; background:var(--card); }
+nav a.on { background:var(--sun); box-shadow:0 3px 0 var(--ink); }
+main { max-width:720px; margin:0 auto; padding:24px 16px 48px; }
+h1 { font-size:30px; line-height:1.2; margin:8px 0 16px; }
+.card { background:var(--card); border:2px solid var(--ink); border-radius:22px; box-shadow:0 4px 0 var(--ink);
+  padding:18px; margin:0 0 16px; }
+h2 { font-size:19px; margin:0 0 4px; }
+p { margin:0; overflow-wrap:anywhere; }
+a.mail { color:var(--ink); font-weight:700; }
+.js section { display:none; } .js section.on { display:block; }
+footer { text-align:center; color:var(--soft); font-size:14px; padding:0 16px 32px; }
+footer a { color:var(--soft); }
+</style>
+</head>
+<body>
+<nav aria-label="Language"><a href="#en" data-lang="en">English</a><a href="#tr" data-lang="tr">Türkçe</a></nav>
+<main>
+<section lang="en" data-lang="en">
+<h1>PawPot · Support</h1>
+<article class="card"><h2>Contact</h2><p>Questions, ideas or a problem with the app? Write to <a class="mail" href="mailto:berkehan.k@gmail.com?subject=PawPot">berkehan.k@gmail.com</a>. Please include your iPhone or iPad model and iOS version.</p></article>
+<article class="card"><h2>Does PawPot tell me how much to feed?</h2><p>No. PawPot shows ingredients and preparation steps but never portion sizes or personal feeding advice. For puppies, kittens, pregnant, sick or older animals, ask your veterinarian.</p></article>
+<article class="card"><h2>Why don't I see any recipes?</h2><p>Choose Cats or Dogs at the top of the Kitchen tab and tick the ingredients you have. Recipes you can make appear under "Recipes for you"; the Recipes tab lists all of them.</p></article>
+<article class="card"><h2>Reminders don't arrive</h2><p>Street-feeding reminders use local notifications. Allow notifications for PawPot in iOS Settings &gt; Notifications.</p></article>
+<article class="card"><h2>Deleting my data</h2><p>Everything is stored only on your device. Use the clear buttons in PawPot's Settings, or delete the app.</p></article>
+<article class="card"><h2>Privacy</h2><p>PawPot is free, with no account, ads, tracking or in-app purchases. Read the <a class="mail" href="./#en">privacy policy</a>.</p></article>
+</section>
+<section lang="tr" data-lang="tr">
+<h1>PawPot · Destek</h1>
+<article class="card"><h2>İletişim</h2><p>Sorun, öneri ya da sorularını <a class="mail" href="mailto:berkehan.k@gmail.com?subject=PawPot">berkehan.k@gmail.com</a> adresine yazabilirsin. Lütfen iPhone veya iPad modelini ve iOS sürümünü de ekle.</p></article>
+<article class="card"><h2>PawPot ne kadar yedireceğimi söylüyor mu?</h2><p>Hayır. PawPot malzemeleri ve hazırlanış adımlarını gösterir; porsiyon miktarı ya da kişisel besleme önerisi vermez. Yavru, gebe, hasta veya yaşlı hayvanlar için veterinerine danış.</p></article>
+<article class="card"><h2>Neden tarif göremiyorum?</h2><p>Mutfak sekmesinin üstünden Kediler ya da Köpekler'i seç ve evdeki malzemeleri işaretle. Yapabileceğin tarifler "Senin için tarifler" bölümünde, hepsi Tarifler sekmesinde görünür.</p></article>
+<article class="card"><h2>Hatırlatıcılar gelmiyor</h2><p>Sokak dostları hatırlatıcıları yerel bildirim kullanır. iOS Ayarlar &gt; Bildirimler'den PawPot'a izin ver.</p></article>
+<article class="card"><h2>Verilerimi silmek</h2><p>Her şey yalnızca cihazında saklanır. PawPot'un Ayarlar ekranındaki temizleme düğmelerini kullan ya da uygulamayı sil.</p></article>
+<article class="card"><h2>Gizlilik</h2><p>PawPot ücretsizdir; hesap, reklam, takip ve uygulama içi satın alma yoktur. <a class="mail" href="./#tr">Gizlilik politikasını</a> oku.</p></article>
+</section>
+</main>
+<footer>PawPot · iOS · <a href="./">Privacy</a></footer>
+<script>
+(function () {
+  var codes = ['en', 'tr'], chosen = null;
+  function pick() {
+    var h = location.hash.slice(1);
+    if (codes.indexOf(h) >= 0) return h;
+    var l = (navigator.languages || [navigator.language || 'en'])[0] || 'en';
+    return /^tr/i.test(l) ? 'tr' : 'en';
+  }
+  function show() {
+    var c = chosen || pick();
+    document.documentElement.lang = c;
+    document.querySelectorAll('[data-lang]').forEach(function (el) {
+      el.classList.toggle('on', el.getAttribute('data-lang') === c);
+    });
+  }
+  document.documentElement.classList.add('js');
+  document.querySelectorAll('nav a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      chosen = a.getAttribute('data-lang');
+      try { history.replaceState(null, '', '#' + chosen); } catch (err) {}
+      show(); scrollTo(0, 0);
+    });
+  });
+  window.addEventListener('hashchange', function () { chosen = null; show(); });
+  show();
+})();
+</script>
+</body>
+</html>
