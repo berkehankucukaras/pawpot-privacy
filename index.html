@@ -67,6 +67,8 @@ footer { text-align:center; color:var(--soft); font-size:14px; padding:0 16px 32
     });
   });
   show();
+  // A #lang link would otherwise jump past the title to the section anchor.
+  window.addEventListener('load', function () { scrollTo(0, 0); });
 })();
 </script>
 </body>
